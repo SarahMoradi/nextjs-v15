@@ -1,11 +1,11 @@
 import {tailwindColors} from '../../../../tailwind.config'
-import { colord } from 'colord'
+import {colord} from 'colord'
 
-const getTextColor = (backgroundColor: string): string => 
-    colord(backgroundColor).isDark() ? "#dddddd" : "#333333"
+const getTextColor = (backgroundColor: string): string =>
+  colord(backgroundColor).isDark() ? '#dddddd' : '#333333'
 
 export const Colors: React.FC = () => (
-  <div className='flex flex-wrap justify-center' dir='rtl'>
+  <div className='flex flex-wrap justify-center' dir='rtl' lang='en'>
     {Object.entries(tailwindColors).map(([name, color]) => (
       <ColorBox key={name} name={name} color={color} />
     ))}

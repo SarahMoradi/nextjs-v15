@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Config } from "tailwindcss";
 import {colord, extend} from 'colord'
 import mixPlugin from 'colord/plugins/mix'
