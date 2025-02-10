@@ -45,7 +45,7 @@ export default function RootLayout({
       <body
         style={{fontWeight: '300'}}
         // first-row: 80px 1fr: full remained size footer: auto based on content
-        className='min-h-screen grid grid-rows-[80px_1fr_auto] bg-gray-200 dark:bg-gray-800 dark:text-white'
+        className='min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content'
       >
         <Header />
         <div className='flex-1 flex'>{children}</div>
