@@ -2,8 +2,8 @@ import './globals.css'
 
 import {Figtree} from 'next/font/google'
 import localFont from 'next/font/local'
-import {Header} from './_components/header'
-import {Footer} from './_components/footer'
+import { Header } from './_components/header'
+import { Footer } from './_components/footer'
 
 // Google Fonts
 const figtree = Figtree({
@@ -47,7 +47,7 @@ export default function RootLayout({
         // first-row: 80px 1fr: full remained size footer: auto based on content
         className='min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content'
       >
-        <Header />
+        <Header/>
         <div className='flex-1 flex'>{children}</div>
         <Footer />
       </body>
