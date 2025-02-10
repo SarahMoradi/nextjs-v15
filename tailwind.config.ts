@@ -23,9 +23,13 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: tailwindColors,
+    // colors: tailwindColors,
+    container: {
+      center: true
+    },
     extend: {
     },
   },
+  darkMode: "class",
   plugins: [],
 } satisfies Config;
