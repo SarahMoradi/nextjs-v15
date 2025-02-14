@@ -56,6 +56,10 @@ export default {
       center: true
     },
     extend: {
+      // bg-hero-pattern
+      backgroundImage:{
+        'hero-pattern': "url('/images/tile.svg')"
+      }
     },
   },
   darkMode: "class",
