@@ -16,6 +16,9 @@ export default function Home() {
               هر جای مسیرِ برنامه‌نویسی که باشی، با هم‌راهی استادهای باتجربهٔ کلاسبن می‌تونی بدون
               محدودیت به قله‌های بالاتر صعود کنی. ما همیشه هواتو داریم.
             </p>
+            <Button>
+              دوره های ری اکت و نکست
+            </Button>
             <Image
               src='/images/frameworks.png'
               className='grayscale mt-4 opacity-70 m-auto xl:m-0'
