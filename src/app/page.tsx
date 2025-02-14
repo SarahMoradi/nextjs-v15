@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import { Button } from './_components/button'
+import {Button} from './_components/button'
 // import {Colors} from './_components/colors/colors'
 
 export default function Home() {
   return (
     <>
-      <section className='bg-hero-pattern mt-5 xl:mt-20 bg-no-repeat bg-center xl:bg-left mt-5 xl:mt-20 xl-bg-left'>
+      <section className='bg-hero-pattern mt-5 xl:mt-20 bg-no-repeat bg-center xl:bg-left xl-bg-left'>
         <div className='container flex flex-col-reverse items-center xl:flex-row'>
           <div className='flex-1 flex flex-col gap-5 mt-12 pb-5 text-center xl:text-right'>
             <h3 className='text-xl xl:text-2xl dark:text-info'>خوش اومدی به ...</h3>
@@ -16,9 +16,14 @@ export default function Home() {
               هر جای مسیرِ برنامه‌نویسی که باشی، با هم‌راهی استادهای باتجربهٔ کلاسبن می‌تونی بدون
               محدودیت به قله‌های بالاتر صعود کنی. ما همیشه هواتو داریم.
             </p>
-            <Button>
-              دوره های ری اکت و نکست
-            </Button>
+            <div className='my-5 flex gap-4'>
+              <Button variant='primary' size='large'>
+                دوره های ری اکت و نکست
+              </Button>
+              <Button variant='neutral' size='large'>
+                مشاوره برنامه نویسی
+              </Button>
+            </div>
             <Image
               src='/images/frameworks.png'
               className='grayscale mt-4 opacity-70 m-auto xl:m-0'
@@ -30,11 +35,6 @@ export default function Home() {
           <Image src='/images/programmer-landing.svg' alt='' width={702} height={521} />
         </div>
       </section>
-      <div className='container'>
-        <Button varient='info' size='large' shape='wide' animatedIcon={true}>
-          ثبت نام
-        </Button>
-      </div>
     </>
   )
 }

@@ -1,6 +1,6 @@
 // UNION TYPES
 
-export type Varient =
+export type Variant =
   | 'neutral'
   | 'primary'
   | 'secondary'

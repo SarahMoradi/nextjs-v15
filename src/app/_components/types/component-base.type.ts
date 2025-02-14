@@ -1,9 +1,9 @@
 import {Size} from './size.type'
-import {Varient} from './varient.type'
+import {Variant} from './variant.type'
 
 export type ComponentBase = {
   isDisabled?: boolean
   className?: string
-  varient?: Varient
+  variant?: Variant
   size?: Size
 }
