@@ -2,7 +2,7 @@
 import {Size} from '../types/size.type'
 import classNames from 'classnames'
 import {ButtonProps, ButtonShape} from './button.types'
-// import { Loading } from "../loading";
+import { Loading } from '../loading'
 
 const sizeClasses: Record<Size, string> = {
   tiny: 'btn-xs',
@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   isOutline = false,
   shape = 'default',
   isLoading = false,
-  // loadingType = "spinner",
+  loadingType = "spinner",
   loadingText = 'در حال ارسال درخواست',
   type = 'button',
   isLink = false,
@@ -48,7 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button type={type} disabled={isDisabled} className={classes} {...rest}>
-      {/* {isLoading && <Loading type={loadingType} />} */}
+      {isLoading && <Loading type={loadingType} />}
       {isLoading ? loadingText : children}
     </button>
   )
