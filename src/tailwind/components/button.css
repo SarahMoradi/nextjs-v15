@@ -51,7 +51,7 @@
 
     /* btn with state colors */
     &-info {
-        @apply dark:border-info dark:bg-info dark:text-info-content dark:outline-info;
+        @apply dark:border-info dark:bg-info dark:text-base-100 dark:outline-info;
         @media (hover: hover) {
             &:hover {
                 @apply dark:border-info dark:bg-info;
