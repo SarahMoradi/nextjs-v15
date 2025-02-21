@@ -35,6 +35,6 @@ describe("Button Component", () => {
 
     test('show rendered button', () => {
         render(<Button variant="primary" isOutline={true} size="large" isDisabled={true}>Click here</Button> )
-        screen.debug();
+        screen.debug(); 
     })
 });
