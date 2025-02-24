@@ -13,11 +13,14 @@
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.8",
     "classnames": "^2.5.1",
     "colord": "^2.9.3",
     "next": "15.1.6",
+    "postcss": "^7.0.39",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
@@ -47,9 +50,7 @@
     "gulp-wrap": "^0.15.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "postcss": "^8",
     "storybook": "^8.5.5",
-    "tailwindcss": "^3.4.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5"
   },
