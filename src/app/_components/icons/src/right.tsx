@@ -1,10 +1,10 @@
-import BaseIcon from "@/app/_components/icons/src/base-icon";
-import { SvgIcon as SvgIconProp } from "@/app/_components/icons/src/icon.types";
+import BaseIcon from "@/app/_components/icons/base-icon";
+import { SvgIcon as SvgIconProp } from "@/app/_components/icons/icon.types";
 
 export default function SvgIcon(props: SvgIconProp) {
   return (
     <BaseIcon {...props}>
-      <path d="M7.505 3L16.5 12.027L7.5 21"/>
+      <path d="M7.505 3L16.5 12.027L7.5 21" />
     </BaseIcon>
   );
 }
