@@ -7,10 +7,11 @@ import {IconArrowLeftFill} from './_components/icons/icons'
 import {Button} from './_components/button'
 import {BlogPostSummary} from '@/types/blog-post-summary.interface'
 import {BlogPostCardList} from './(blog)/_components/blog-post-card-list'
+import {API_URL} from '@/configs/global'
 // import {Colors} from './_components/colors/colors'
 
 async function getNewestCourses(count: number): Promise<CourseSummary[]> {
-  const response = await fetch(`https://api.classbon.com/api/courses/newest/${count}`, {
+  const response = await fetch(`${API_URL}/courses/newest/${count}`, {
     next: {
       revalidate: 24 * 60 * 60, //based on seconds will be revalidated
     },
@@ -19,7 +20,7 @@ async function getNewestCourses(count: number): Promise<CourseSummary[]> {
 }
 
 async function getNewestPosts(count: number): Promise<BlogPostSummary[]> {
-  const response = await fetch(`https://api.classbon.com/api/blog/newest/${count}`, {
+  const response = await fetch(`${API_URL}/blog/newest/${count}`, {
     next: {
       revalidate: 24 * 60 * 60, //based on seconds will be revalidated
     },
