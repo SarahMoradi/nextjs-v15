@@ -5,7 +5,8 @@ import {homeFeatures} from '@/data/home-features'
 import Feature from './_components/feature/feature'
 import {IconArrowLeftFill} from './_components/icons/icons'
 import {Button} from './_components/button'
-import { BlogPostSummary } from '@/types/blog-post-summary.interface'
+import {BlogPostSummary} from '@/types/blog-post-summary.interface'
+import {BlogPostCardList} from './(blog)/_components/blog-post-card-list'
 // import {Colors} from './_components/colors/colors'
 
 async function getNewestCourses(count: number): Promise<CourseSummary[]> {
@@ -27,10 +28,13 @@ async function getNewestPosts(count: number): Promise<BlogPostSummary[]> {
 }
 
 export default async function Home() {
-  const newestCoursesData = getNewestCourses(4);
-  const newestBlogPostsData = getNewestPosts(4);
+  const newestCoursesData = getNewestCourses(4)
+  const newestBlogPostsData = getNewestPosts(4)
 
-  const [newestCourses, newestBlogPosts] = await Promise.all([newestCoursesData, newestBlogPostsData]);
+  const [newestCourses, newestBlogPosts] = await Promise.all([
+    newestCoursesData,
+    newestBlogPostsData,
+  ])
   console.log(newestBlogPosts)
 
   return (
@@ -76,6 +80,7 @@ export default async function Home() {
             </Button>
           </div>
         </div>
+        <BlogPostCardList posts={newestBlogPosts} />
       </section>
     </>
   )
