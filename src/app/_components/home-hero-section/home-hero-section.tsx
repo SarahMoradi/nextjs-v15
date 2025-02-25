@@ -35,5 +35,6 @@ export const HomeHeroSection: React.FC = () => {
         <Image src='/images/programmer-landing.svg' alt='' width={702} height={521} />
       </div>
     </section>
+    
   )
 }
