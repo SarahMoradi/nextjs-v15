@@ -6,7 +6,10 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
   count = 1,
   className,
 }) => {
+    
+ // the output will be [1,2,3,4,5]
   const counts = Array.from({ length: count }, (_, index) => index + 1);
+
   return (
     <div className={`flex flex-wrap justify-center xl:justify-start gap-6 mt-10 ${className}`}>
       {counts.map((item) => (
