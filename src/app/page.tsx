@@ -10,9 +10,13 @@ import {BlogPostCardList} from './(blog)/_components/blog-post-card-list'
 import {API_URL} from '@/configs/global'
 // import {Colors} from './_components/colors/colors'
 
+// export const dynamic = 'force-dynamic'; //no data will be cached and this is dynamic
+
 async function getNewestCourses(count: number): Promise<CourseSummary[]> {
   const response = await fetch(`${API_URL}/courses/newest/${count}`, {
+    // cache: 'no-store', //no data will be cached and this is dynamic
     next: {
+      // revalidate: 0, //no data will be cached and this is dynamic
       revalidate: 24 * 60 * 60, //based on seconds will be revalidated
     },
   })
