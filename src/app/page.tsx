@@ -15,13 +15,22 @@ import { testimonials } from "@/data/testimonials";
 // export const dynamic = 'force-dynamic'; //no data will be cached and this is dynamic
 
 async function getNewestPosts(count: number): Promise<BlogPostSummary[]> {
-  const response = await fetch(`${API_URL}/blog/newest/${count}`, {
-    next: {
-      revalidate: 24 * 60 * 60, //based on seconds will be revalidated
-    },
-  });
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/blog/newest/${count}`, {
+      next: { revalidate: 24 * 60 * 60 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Failed to fetch newest posts:", error);
+    return [];
+  }
 }
+
 
 export default async function Home() {
   const newestBlogPostsData = getNewestPosts(4);
