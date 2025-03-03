@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 // Problem Details Pattern
 interface Problem {
     title: string;
