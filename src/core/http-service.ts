@@ -5,22 +5,8 @@ import axios, {
   AxiosResponse,
 } from "axios";
 
-import {
-  BadRequestError,
-  NetworkError,
-  NotFoundError,
-  UnhandledException,
-  UnauthorizedError,
-  ValidationError,
-} from "@/types/http-errors.interface";
-
-type ApiError =
-  | BadRequestError
-  | NetworkError
-  | NotFoundError
-  | UnhandledException
-  | UnauthorizedError
-  | ValidationError;
+import { ApiError } from "@/types/http-errors.interface";
+import { errorHandler } from "./http-service/http-error-strategies";
 
 const httpService = axios.create({
   baseURL: API_URL,
@@ -38,44 +24,8 @@ httpService.interceptors.response.use(
       const statusCode = error?.response?.status;
       if (statusCode >= 400) {
         const errorData: ApiError = error.response?.data;
-
-        if (statusCode === 400 && !errorData.errors) {
-          throw {
-            ...errorData,
-          } as BadRequestError; //the password is incorrect!
-        }
-
-        if (statusCode === 400 && errorData.errors) {
-          throw {
-            ...errorData,
-          } as ValidationError;
-        }
-
-        if (statusCode === 404) {
-          throw {
-            ...errorData,
-            detail: "سرویس مو.رد نظر یافت نشد",
-          } as NotFoundError;
-        }
-
-        if (statusCode === 403) {
-          throw {
-            ...errorData,
-            detail: "دسترسی به سرویس مورد نظر امکان پذیر نمی باشد",
-          } as UnauthorizedError;
-        }
-
-        if (statusCode >= 500) {
-          throw {
-            ...errorData,
-            detail: "خطای سرور",
-          } as UnhandledException;
-        }
+        errorHandler[statusCode](errorData);
       }
-    } else {
-      throw {
-        detail: "خطای شبکه",
-      } as NetworkError;
     }
   }
 );
