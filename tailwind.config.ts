@@ -1,17 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import type { Config } from "tailwindcss";
-import {colord, extend} from 'colord'
-import mixPlugin from 'colord/plugins/mix'
+import { Config } from "tailwindcss";
+import { colord, extend } from "colord";
+import mixPlugin from "colord/plugins/mix";
 
-extend([mixPlugin])
+extend([mixPlugin]);
 
-const generateDarkenColorFrom = (input: string, percentage= 0.07) :string => 
-  colord(input).darken(percentage).toHex()
+export function generateDarkenColorFrom(
+  input: string,
+  percentage = 0.07
+): string {
+  return colord(input).darken(percentage).toHex();
+}
 
-const generateForegroundColorFrom = (input: string, percentage= 0.08) :string => 
-  colord(input).mix(colord(input).isDark() ? "white" : "black", percentage).toHex()
+export function generateForegroundColorFrom(
+  input: string,
+  percentage = 0.8
+): string {
+  return colord(input)
+    .mix(colord(input).isDark() ? "white" : "black", percentage)
+    .toHex();
+}
 
-export const tailwindColors: {[key: string]: string} = {
+type ColorObject = {
+  [key: string]: string;
+};
+
+export const tailwindColors: ColorObject = {
   current: "currentColor",
   transparent: "transparent",
   white: "#F9F9F9",
@@ -44,24 +57,27 @@ export const tailwindColors: {[key: string]: string} = {
   "error-content": generateForegroundColorFrom("#f87272"),
   "gradient-first": "#34eaa0",
   "gradient-second": "#0fa2e9",
-}
+};
 
-export default {
-  content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+const config: Config = {
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     colors: tailwindColors,
     container: {
-      center: true
+        center: true,
+        padding: {
+            DEFAULT: '1rem',
+            lg: '3rem',
+            xl: '4rem',
+          },
     },
     extend: {
-      // bg-hero-pattern
-      backgroundImage:{
-        'hero-pattern': "url('/images/tile.svg')"
-      }
-    },
+        backgroundImage: {
+            'hero-pattern': "url('/images/tile.svg')"
+        }
+    }
   },
   darkMode: "class",
   plugins: [],
-} satisfies Config;
+};
+export default config;

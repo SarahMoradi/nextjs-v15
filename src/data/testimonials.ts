@@ -3,7 +3,7 @@ import { Testimonial } from "../types/testimonial.type";
 
 export const testimonials: Testimonial[] = [
     {
-      image: "/images/testimonial/one.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "محمدرضا احمدی",
       skills: "توسعه دهنده فرانت‌اند",
       description:
@@ -17,70 +17,70 @@ export const testimonials: Testimonial[] = [
         "به عنوان یک علاقمند به ری‌اکت، دوره‌های کلاسبن برام خیلی مفید بوده. از طریق آموزش‌های عملی و مثال‌های واقعی، تونستم بهترین راهکارها و تکنیک‌ها رو برای توسعه بهتر اپلیکیشن‌های ری‌اکت یاد بگیرم",
     },
     {
-      image: "/images/testimonial/two.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "محمد‌امین رضایی",
       skills: "برنامه‌نویس وب",
       description:
         "دوره‌های آموزشی کلاسبن برای من تبدیل به یک تجربه یادگیری شگفت‌انگیز شده. از طریق آموزش‌های کاربردی، به راحتی مهارت‌های فرانت‌اندم رو بهبود دادم",
     },
     {
-      image: "/images/testimonial/nine.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "فاطمه محمدی",
       skills: "برنامه‌نویس و طراح وب",
       description:
         "در کلاسبن، تونستم با استفاده از آموزش‌های تخصصی، مهارت‌های برنامه‌نویسی ام رو به یک سطح جدید برسونم. این دوره‌ها واقعاً به من کمک کردند. ممنون",
     },
     {
-      image: "/images/testimonial/ten.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "زهرا مقدم",
       skills: "برنامه‌نویس ری‌اکت",
       description:
         "کلاسبن بهترین منبع آموزشی برای دوره‌های فرانت‌انده. این دوره‌ها با محتوای کاربردی به من اعتماد به نفس لازم رو برای شروع یک شغل جدید داده",
     },
     {
-      image: "/images/testimonial/four.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "حسین کریمی",
       skills: "توسعه‌دهنده ری‌اکت و نکست",
       description:
         "من تمام دوره‌های توسعه ری‌اکت رو از کلاسبن شرکت کردم و به راحتی می‌تونم بگم که این بهترین تصمیمی بود که برای پیشرفت در دنیای توسعه وب گرفتم. آموزش‌ها عالی و جامع هستن . درود بر مهندس سپهوند",
     },
     {
-      image: "/images/testimonial/three.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "محمد خادم",
       skills: "برنامه‌نویس وب",
       description:
         "دوره‌های کلاسبن  به من کمک خیلی زیادی تا حالا کرده. از طریق آموزش‌های عملی و مثال‌های واقعی، تونستم اصول اولیه توسعه وب را مسلط بشم و با خیال راحت به پیشرفت خودم ادامه بدم",
     },
     {
-      image: "/images/testimonial/eleven.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "سارا معینی",
       skills: "برنامه نویس ری‌اکت",
       description:
         "دوره‌های کلاسبن برای من به عنوان یک فرصت عالی برای یادگیری ری‌اکت بوده. با تدریس استاد سپهوند، توانستم به سرعت پیشرفته کنم. کلاسبن واقعاً جایی برای یادگیری عمیق و به‌روز از تکنولوژی‌های جدیده. ممنون",
     },
     {
-      image: "/images/testimonial/twelve.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "مریم کاظمی",
       skills: "برنامه نویس وب",
       description:
         "تجربه‌ی من از دوره‌های آموزشی وب‌سایت کلاسبن عالی بوده. من به عنوان یک توسعه‌دهنده فرانت‌اند تونستم از آموزش‌های اصولی و پروژه‌های عملی استفاده کنم. به ویژه، دوره‌های مرتبط با ری‌اکت برای من خیلی مفید بودن و به من کمک کردن تا مهارت‌هام رو ارتقا بدم",
     },
     {
-      image: "/images/testimonial/five.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "حسین اسماعیلی",
       skills: "برنامه نویس در کارگزاری مفید",
       description:
         "اولین تجربه آموزش من در سامانه کلاسبن واقعا برام جذاب بود. آموزش با کیفیت، محیط یادگیری سریع و کاربرپسند. دمتون گرم",
     },
     {
-      image: "/images/testimonial/six.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "حسام اکبری",
       skills: "برنامه نویس در کارگزاری مفید",
       description:
         "با اینکه پلتفرم آموزشی کلاسبن به تازگی راه اندازی شده اما پیاده سازی دقیق و کاربر پسند بودن این پلتفرم نشان از یک تیم حرفه ای داره. ",
     },
     {
-      image: "/images/testimonial/seven.jpg",
+      image: "/images/testimonial/eight.jpg",
       name: "امیر سلحشور",
       skills: "برنامه نویس ری‌اکت",
       description:
