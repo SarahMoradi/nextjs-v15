@@ -4,9 +4,11 @@ import {notFound} from 'next/navigation'
 import {CourseAside} from './_components/course-aside/course-aside'
 import {Tab} from '@/types/tab.type'
 import { Tabs } from '@/app/_components/tabs'
+import { Accordion } from '@/app/_components/accordion'
+import { Accordion as AccordionType } from '@/types/accordion'
 
 //it should be defined in side of dynamic route segment for getting static rendring based on slugs
-
+ 
 //tip:
 //  The generateStaticParams function can be used in combination with dynamic route segments
 //  to statically generate routes at build time instead of on-demand at request time.
@@ -30,6 +32,14 @@ export default async function CourseDetail({params}: {params: {slug: string}}) {
   const {slug} = params
   const course = await getCourseDeatils(slug)
 
+  const faqs: AccordionType[] = course.frequentlyAskedQuestions.map(
+    faq => ({
+        id: faq.id,
+        title: faq.question,
+        content: faq.answer
+    })
+)
+
   const tabs: Tab[] = [
     {
       label: 'مشخصات دوره',
@@ -41,7 +51,7 @@ export default async function CourseDetail({params}: {params: {slug: string}}) {
     },
     {
       label: 'سوالات متداول',
-      content: 'accordion components',
+      content: <Accordion data={faqs} />,
     },
   ]
 
