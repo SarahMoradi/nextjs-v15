@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 
 import { ApiError } from "@/types/http-errors.interface";
-import { errorHandler } from "./http-service/http-error-strategies";
+import { errorHandler, networkErrorStrategy } from "./http-service/http-error-strategies";
 
 const httpService = axios.create({
   baseURL: API_URL,
@@ -26,6 +26,8 @@ httpService.interceptors.response.use(
         const errorData: ApiError = error.response?.data;
         errorHandler[statusCode](errorData);
       }
+    } else {
+      networkErrorStrategy();
     }
   }
 );
