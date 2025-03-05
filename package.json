@@ -20,6 +20,7 @@
     "classnames": "^2.5.1",
     "colord": "^2.9.3",
     "next": "15.1.6",
+    "nextjs-toploader": "^3.7.15",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
     "react": "^19.0.0",
