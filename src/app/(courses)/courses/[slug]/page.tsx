@@ -8,6 +8,8 @@ import { Accordion } from "@/app/_components/accordion";
 import { Accordion as AccordionType } from "@/types/accordion";
 import { CourseChapter } from "@/types/course-chapter.interface";
 import { CourseCurriculum } from "./_components/curriculum";
+import { VideoPlayer } from "@/app/_components/video-player";
+import Image from "next/image";
 
 //it should be defined in side of dynamic route segment for getting static rendring based on slugs
 
@@ -84,7 +86,22 @@ export default async function CourseDetail({
           {course.subTitle}
         </h2>
 
-        <div className=" mt-5">Video Player Component</div>
+        <div className=" mt-5">
+          {course.videoUrl ? (
+            <VideoPlayer
+              src={course.videoUrl}
+              poster={`${API_URL}/picture/${course.coverImageId}`}
+            />
+          ) : (
+            <Image
+              src={`https://api.classbon.com/api/picture/${course.coverImageId}`}
+              alt={course.title}
+              width={550}
+              height={327}
+              className="w-full"
+            />
+          )}
+        </div>
       </div>
       <div className="col-span-10 xl:col-span-3">
         <CourseAside {...course} />
