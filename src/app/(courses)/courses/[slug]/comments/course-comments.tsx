@@ -6,6 +6,7 @@ import { TextPlaceholder } from "@/app/_components/placeholders";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/app/_components/button/button";
+import { Alert } from "@/app/_components/alert/alert";
 import { IconRefresh } from "@/app/_components/icons/icons";
 import { useCourseComments } from "../_api/get-comments";
 
@@ -35,7 +36,7 @@ const CourseComments = () => {
   if (error) {
     return (
       <>
-        <p>خطا در برقراری ارتباط با سرور</p>
+        <Alert variant="error">خطا در برقراری ارتباط با سرور</Alert>
         <div className="text-center mt-3">
           <Button
             variant="neutral"
