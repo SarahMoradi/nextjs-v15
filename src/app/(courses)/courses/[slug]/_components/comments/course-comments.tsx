@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { Button } from "@/app/_components/button/button";
 import { Alert } from "@/app/_components/alert/alert";
 import { IconRefresh } from "@/app/_components/icons/icons";
-import { useCourseComments } from "../_api/get-comments";
+import { useCourseComments } from "../../_api/get-comments";
 
 const CourseComments = () => {
   const { ref, inView } = useInView({});
