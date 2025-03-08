@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@/app/_components/button/button";
-import { Textbox } from "@/app/_components/textbox";
 import { useForm } from "react-hook-form";
 import { SignIn } from "../types/signin.types";
+import { TextInput } from "@/app/_components/form-input";
 
 const SignInForm = () => {
   const {
@@ -24,10 +24,23 @@ const SignInForm = () => {
         className="flex flex-col gap-6 mt-16"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Textbox
-          placeholder="شماره موبایل"
-          {...register("mobile", { required: "شماره موبالی الزامی است" })}
+        <TextInput<SignIn>
+          register={register}
+          name={"mobile"}
+          rules={{
+            required: "شماره موبایل الزامی است",
+            maxLength: {
+              value: 11,
+              message: "شماره موبایل باید 11 رقم باشد",
+            },
+            minLength: {
+              value: 11,
+              message: "شماره موبایل باید 11 رقم باشد",
+            },
+          }}
+          errors={errors}
         />
+
         <Button type="submit" variant="primary">
           تایید و دریافت کد
         </Button>
