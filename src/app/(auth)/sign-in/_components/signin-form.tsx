@@ -2,18 +2,27 @@
 
 import { Button } from "@/app/_components/button/button";
 import { useForm } from "react-hook-form";
-import { SignIn } from "../types/signin.types";
+import { SignIn } from "../_types/signin.types";
 import { TextInput } from "@/app/_components/form-input";
+import { useSignIn } from "../_api/signin";
+import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<SignIn>();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const router = useRouter();
+
+  const signIn = useSignIn({
+    onSuccess: () => router.push(`/verify?mobile=${getValues("mobile")}`),
+  });
+
+  const onSubmit = (data: SignIn) => {
+    signIn.submit(data);
   };
 
   return (
@@ -41,7 +50,7 @@ const SignInForm = () => {
           errors={errors}
         />
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" isLoading={signIn.isPending}>
           تایید و دریافت کد
         </Button>
       </form>
