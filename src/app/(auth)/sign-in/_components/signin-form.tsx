@@ -6,6 +6,8 @@ import { SignIn } from "../_types/signin.types";
 import { TextInput } from "@/app/_components/form-input";
 import { useSignIn } from "../_api/signin";
 import { useRouter } from "next/navigation";
+import { useNotificationStore } from "@/stores/notification.store";
+import { useEffect } from "react";
 
 const SignInForm = () => {
   const {
@@ -24,6 +26,15 @@ const SignInForm = () => {
   const onSubmit = (data: SignIn) => {
     signIn.submit(data);
   };
+
+  const showNotification = useNotificationStore(state => state.showNotification);
+
+    useEffect(() => {
+        showNotification({
+            type: 'error',
+            message: 'error'
+        });
+    }, []);
 
   return (
     <>
