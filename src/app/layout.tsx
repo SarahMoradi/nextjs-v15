@@ -46,7 +46,6 @@ export default function RootLayout({
   return (
     <html dir="rtl" className={`dark ${figtree.variable} ${estedad.variable}`}>
       <body
-        style={{ fontWeight: "300" }}
         className="min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content"
       >
         <NextTopLoader showSpinner={false} color="var(--color-primary)" />
