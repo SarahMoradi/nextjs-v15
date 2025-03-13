@@ -12,6 +12,7 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { signInSchema } from '../_types/signin.schema'
 import { signInAction } from '@/actions/auth'
 import { useFormState } from 'react-dom'
+import { Alert } from '@/app/_components/alert/alert'
 
 const SignInForm = () => {
   const {
@@ -23,31 +24,43 @@ const SignInForm = () => {
     resolver: zodResolver(signInSchema),
   })
 
-  const router = useRouter()
+  const showNotification = useNotificationStore((state) => state.showNotification)
 
   //for handing error in server actions
-  const [] = useFormState(signInAction, {message: ''})
+  const [formState, action] = useFormState(signInAction, {message: ''})
 
-  // const signIn = useSignIn({
-  //   onSuccess: () => router.push(`/verify?mobile=${getValues('mobile')}`),
-  // })
+  useEffect(() => {
+    if(formState.message){
+      showNotification({
+        message: formState.message,
+        type: 'error'
+      })
+    }
+  }, [formState, showNotification])
 
+ 
   const onSubmit = (data: SignIn) => {
     
     // server action
-    signInAction()
+    const formData = new FormData();
+    formData.append('mobile', data.mobile)
+    action(formData)
 
     // signIn.submit(data)  client
   }
 
-  const showNotification = useNotificationStore((state) => state.showNotification)
-
+  
   useEffect(() => {
     showNotification({
       type: 'error',
       message: 'error',
     })
   }, [])
+
+   // const signIn = useSignIn({
+  //   onSuccess: () => router.push(`/verify?mobile=${getValues('mobile')}`),
+  // })
+
 
   return (
     <>
@@ -60,9 +73,12 @@ const SignInForm = () => {
           errors={errors}
         />
 
-        <Button type='submit' variant='primary' isLoading={signIn.isPending}>
+        <Button type='submit' variant='primary'>
           تایید و دریافت کد
         </Button>
+        {
+          formState.message && <Alert variant='error'>{formState.message}</Alert>
+        }
       </form>
     </>
   )

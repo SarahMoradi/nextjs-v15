@@ -10,9 +10,16 @@ export async function signInAction(formState: {message: string}, formData: FormD
   })
 
   if (!validatedData.success) {
-    console.log('error')
+    return{
+        message: 'خطا در پردازش اطلاعات'
+    }
   } else {
-    console.log(mobile, 'server action')
-    redirect('/')
+    try {
+        throw 'خطا در برقراری ارتباط با سرور'
+    } catch (error) {
+        return {
+            message: error as string
+        }
+    }
   }
 }
