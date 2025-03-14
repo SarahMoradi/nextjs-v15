@@ -1,18 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 'use client'
 
 import {Button} from '@/app/_components/button/button'
+import {Textbox} from '@/app/_components/textbox'
 import {useForm} from 'react-hook-form'
-import {SignIn} from '../_types/signin.types'
 import {TextInput} from '@/app/_components/form-input'
-// import {useSignIn} from '../_api/signin'
 import {useRouter} from 'next/navigation'
-import {useNotificationStore} from '@/stores/notification.store'
-import {useEffect} from 'react'
 import {zodResolver} from '@hookform/resolvers/zod'
+import {useNotificationStore} from '../../../../stores/notification.store'
+import {signInAction} from '@/actions/auth'
+import {useFormState} from 'react-dom'
+import {useEffect, useTransition} from 'react'
+import { SignIn } from '../_types/signin.types'
 import { signInSchema } from '../_types/signin.schema'
-import { signInAction } from '@/actions/auth'
-import { useFormState } from 'react-dom'
-import { Alert } from '@/app/_components/alert/alert'
 
 const SignInForm = () => {
   const {
@@ -24,61 +24,47 @@ const SignInForm = () => {
     resolver: zodResolver(signInSchema),
   })
 
+  const [formState, action] = useFormState(signInAction, null)
+  const [isPending, startTransition] = useTransition()
+
+  const router = useRouter()
+
   const showNotification = useNotificationStore((state) => state.showNotification)
 
-  //for handing error in server actions
-  const [formState, action] = useFormState(signInAction, {message: ''})
-
   useEffect(() => {
-    if(formState.message){
+    if (formState && !formState.isSuccess && formState.error) {
       showNotification({
-        message: formState.message,
-        type: 'error'
+        message: formState.error?.detail!,
+        type: 'error',
       })
+    } else if (formState && formState.isSuccess) {
+      router.push(`/verify?mobile=${getValues('mobile')}`)
+      showNotification({
+        message: 'کد تایید به شماره شما ارسال شد',
+        type: 'info',
+      })
+      console.log(formState.response)
     }
-  }, [formState, showNotification])
+  }, [formState, showNotification, router, getValues])
 
- 
   const onSubmit = (data: SignIn) => {
-    
-    // server action
-    const formData = new FormData();
+    const formData = new FormData()
     formData.append('mobile', data.mobile)
-    action(formData)
-
-    // signIn.submit(data)  client
-  }
-
-  
-  useEffect(() => {
-    showNotification({
-      type: 'error',
-      message: 'error',
+    startTransition(async () => {
+      await action(formData)
     })
-  }, [])
-
-   // const signIn = useSignIn({
-  //   onSuccess: () => router.push(`/verify?mobile=${getValues('mobile')}`),
-  // })
-
+  }
 
   return (
     <>
       <h5 className='text-2xl'>ورود | ثبت نام</h5>
       <p className='mt-2'>دنیای شگفت انگیز برنامه نویسی در انتظار شماست!</p>
       <form className='flex flex-col gap-6 mt-16' onSubmit={handleSubmit(onSubmit)}>
-        <TextInput<SignIn>
-          register={register}
-          name={'mobile'}
-          errors={errors}
-        />
+        <TextInput<SignIn> register={register} name={'mobile'} errors={errors} />
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary' isLoading={isPending}>
           تایید و دریافت کد
         </Button>
-        {
-          formState.message && <Alert variant='error'>{formState.message}</Alert>
-        }
       </form>
     </>
   )

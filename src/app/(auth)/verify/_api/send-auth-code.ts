@@ -1,19 +1,19 @@
-import { createData } from "@/core/http-service";
-import { useMutation } from "@tanstack/react-query";
+// import { createData } from "@/core/http-service";
+// import { useMutation } from "@tanstack/react-query";
 
-export const SendAuthCode = (username: string): Promise<any> => {
-  return createData("/send-auth-code", { username });
-};
+// export const SendAuthCode = (username: string): Promise<any> => {
+//   return createData("/send-auth-code", { username });
+// };
 
-type UseSendAuthCodeOptions = {
-  onSuccess?: () => void;
-};
+// type UseSendAuthCodeOptions = {
+//   onSuccess?: () => void;
+// };
 
-export const useSendAuthCode = ({ onSuccess }: UseSendAuthCodeOptions = {}) => {
-  const { mutate: submit, isPending } = useMutation({
-    mutationFn: SendAuthCode,
-    onSuccess: onSuccess,
-  });
+// export const useSendAuthCode = ({ onSuccess }: UseSendAuthCodeOptions = {}) => {
+//   const { mutate: submit, isPending } = useMutation({
+//     mutationFn: SendAuthCode,
+//     onSuccess: onSuccess,
+//   });
 
-  return { submit, isPending };
-};
+//   return { submit, isPending };
+// };
