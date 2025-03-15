@@ -12,13 +12,13 @@ import {useSearchParams} from 'next/navigation'
 import {useForm} from 'react-hook-form'
 import {VerifyUserModel} from '../_types/verify-user.type'
 import {useFormState} from 'react-dom'
-import { SendAuthCode } from '@/actions/auth'
+import { sendAuth, verify } from '@/actions/auth'
 
-const getTwoMinutesFromNow = () => {
-  const time = new Date()
-  time.setSeconds(time.getSeconds() + 10)
-  return time
-}
+// const getTwoMinutesFromNow = () => {
+//   const time = new Date()
+//   time.setSeconds(time.getSeconds() + 10)
+//   return time
+// }
 
 const VerificationForm = ({mobile}: {mobile: string}) => {
   const [showResendCode, setShowResendCode] = useState<boolean>(false)
@@ -34,8 +34,8 @@ const VerificationForm = ({mobile}: {mobile: string}) => {
 
   const showNotification = useNotificationStore((state) => state.showNotification)
 
-  const [sendAuthCodeState, sendAuthCodeAction] = useFormState(SendAuthCode, null)
-  // const [verifyState, verifyAction] = useFormState(verify, undefined)
+  const [sendAuthCodeState, sendAuthCodeAction] = useFormState(sendAuth, null)
+  const [verifyState, verifyAction] = useFormState(verify, undefined)
 
   const [verifyPendingState, startTransition] = useTransition()
 
@@ -64,7 +64,7 @@ const VerificationForm = ({mobile}: {mobile: string}) => {
     formData.append('code', data.code)
 
     startTransition(async () => {
-      // verifyAction(formData)
+      verifyAction(formData)
     })
   }
 
@@ -90,7 +90,7 @@ const VerificationForm = ({mobile}: {mobile: string}) => {
             setValue('code', value, {shouldValidate: true})
           }}
         />
-        <Timer
+        {/* <Timer
           ref={timerRef}
           className='my-8'
           size='small'
@@ -100,7 +100,7 @@ const VerificationForm = ({mobile}: {mobile: string}) => {
           expiryTimestamp={getTwoMinutesFromNow()}
           showDays={false}
           showHours={false}
-        />
+        /> */}
         <Button isLink={true} isDisabled={!showResendCode} onClick={resendAuthCode}>
           ارسال مجدد کد تایید
         </Button>
