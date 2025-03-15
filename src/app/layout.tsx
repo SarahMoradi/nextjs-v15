@@ -5,8 +5,9 @@ import localFont from "next/font/local";
 import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
 import QueryProvider from "@/providers/react-query-provider";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
 import { Notifications } from "./_components/notification/notifications";
+import AuthProvider from "@/providers/auth-provider";
 
 // Google Fonts
 const figtree = Figtree({
@@ -45,16 +46,16 @@ export default function RootLayout({
 }>) {
   return (
     <html dir="rtl" className={`dark ${figtree.variable} ${estedad.variable}`}>
-      <body
-        className="min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content"
-      >
+      <body className="min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content">
         <NextTopLoader showSpinner={false} color="var(--color-primary)" />
         <Notifications />
-        <QueryProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </QueryProvider>
+        <AuthProvider>
+          <QueryProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </QueryProvider>
+        </AuthProvider>
       </body>
     </html>
   );

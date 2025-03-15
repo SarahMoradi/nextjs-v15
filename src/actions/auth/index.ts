@@ -1,49 +1,41 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
-import { signInSchema } from "@/app/(auth)/sign-in/_types/signin.schema";
 import { OperationResult } from "@/types/operation-result";
 import { serverActionWrapper } from "../server-action-wrapper";
-import { createData } from "@/core/http-service";
-import { SignIn } from "@/app/(auth)/sign-in/_types/signin.types";
+
 import {
   sendAuthCode,
+  VerifyUserModel,
 } from "@/app/(auth)/verify/_types/verify-user.type";
-import { Problem } from "@/types/http-errors.interface";
 import { signIn, signOut } from "@/auth";
+import { createData } from "@/core/http-service";
+import { SignIn } from "@/app/(auth)/sign-in/_types/signin.types";
 
 export async function signInAction(
   formState: OperationResult<string> | null,
   formData: FormData
 ) {
   const mobile = formData.get("mobile") as string;
-  const validatedData = signInSchema.safeParse({
-    mobile,
-  });
+  // const validatedData = signInSchema.safeParse({
+  //     mobile,
+  // });
 
-  //   if (!validatedData.success) {
+  // if (!validatedData.success) {
   //     return {
-  //       message: 'خطا در پردازش اطلاعات',
-  //     }
-  //   } else {
+  //         message: "خطا در فرمت موبایل",
+  //     };
+  // } else {
   return serverActionWrapper(
     async () =>
       await createData<SignIn, string>("/signin", {
         mobile,
       })
   );
-  // try {
-  //     throw 'خطا در برقراری ارتباط با سرور'
-  // } catch (error) {
-  //     return {
-  //         message: error as string
-  //     }
   // }
-  //   }
 }
 
 export async function sendAuth(
-
   formState: OperationResult<string> | null,
   mobile: string
 ) {
@@ -55,15 +47,22 @@ export async function sendAuth(
   );
 }
 
-export async function verify(state: Problem | undefined, formData: FormData) {
+export async function verify(
+  prevState: OperationResult<void> | undefined,
+  model: VerifyUserModel
+) {
   try {
-      await signIn("credentials", formData);
+    await signIn("credentials", {
+      username: model.username,
+      code: model.code,
+      redirect: false,
+    });
+    return {
+      isSuccess: true,
+    } satisfies OperationResult<void>;
   } catch (error) {
-      // todo
-      return {
-          status: 0,
-          title: "",
-      } satisfies Problem;
+    // console.log(error);
+       throw new Error('');
   }
 }
 

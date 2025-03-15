@@ -9,11 +9,12 @@ import { Button } from "@/app/_components/button/button";
 import Link from "next/link";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useNotificationStore } from "../../../../stores/notification.store";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { VerifyUserModel } from "../_types/verify-user.type";
 import { useFormState } from "react-dom";
 import { sendAuth, verify } from "@/actions/auth";
+import { getSession } from "next-auth/react";
 
 // const getTwoMinutesFromNow = () => {
 //   const time = new Date()
@@ -44,6 +45,20 @@ const VerificationForm = ({ mobile }: { mobile: string }) => {
 
   const params = useSearchParams();
   const username = params.get("mobile")!;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (verifyState && !verifyState.isSuccess) {
+      showNotification({
+        message: "",
+        type: "error",
+      });
+    } else if (verifyState?.isSuccess) {
+      const fetchSession = async () => await getSession();
+      fetchSession();
+      router.push("/student/courses");
+    }
+  });
 
   useEffect(() => {
     if (
@@ -66,12 +81,12 @@ const VerificationForm = ({ mobile }: { mobile: string }) => {
 
   const onSubmit = (data: VerifyUserModel) => {
     data.username = username;
-    const formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("code", data.code);
 
     startTransition(async () => {
-      verifyAction(formData);
+      verifyAction({
+        username: data.username,
+        code: data.code,
+      });
     });
   };
 
