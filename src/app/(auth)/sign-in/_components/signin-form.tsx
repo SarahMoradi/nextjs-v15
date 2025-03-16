@@ -13,6 +13,7 @@ import {useFormState} from 'react-dom'
 import {useEffect, useTransition} from 'react'
 import { SignIn } from '../_types/signin.types'
 import { signInSchema } from '../_types/signin.schema'
+import { useActionState } from 'react';
 
 const SignInForm = () => {
   const {
@@ -24,7 +25,7 @@ const SignInForm = () => {
     resolver: zodResolver(signInSchema),
   })
 
-  const [formState, action] = useFormState(signInAction, null)
+  const [formState, action] = useActionState(signInAction, null)
   const [isPending, startTransition] = useTransition()
 
   const router = useRouter()
