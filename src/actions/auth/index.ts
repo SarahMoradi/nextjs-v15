@@ -8,7 +8,7 @@ import {
   sendAuthCode,
   VerifyUserModel,
 } from "@/app/(auth)/verify/_types/verify-user.type";
-import { signIn, signOut } from "@/auth";
+import { AuthroizeError, signIn, signOut } from "@/auth";
 import { createData } from "@/core/http-service";
 import { SignIn } from "@/app/(auth)/sign-in/_types/signin.types";
 
@@ -61,8 +61,13 @@ export async function verify(
       isSuccess: true,
     } satisfies OperationResult<void>;
   } catch (error) {
-    // console.log(error);
-       throw new Error('');
+    if (error instanceof AuthroizeError) {
+      return {
+        isSuccess: false,
+        error: error.problem!,
+      } satisfies OperationResult<void>;
+    }
+    throw new Error("");
   }
 }
 

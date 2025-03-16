@@ -48,9 +48,9 @@ const VerificationForm = ({ mobile }: { mobile: string }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (verifyState && !verifyState.isSuccess) {
+    if (verifyState && !verifyState.isSuccess && verifyState.error?.detail) {
       showNotification({
-        message: "",
+        message: verifyState.error.detail,
         type: "error",
       });
     } else if (verifyState?.isSuccess) {
